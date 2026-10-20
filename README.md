@@ -1,48 +1,25 @@
-# Game #001 — Sudoku Premium Edition
+# Sudoku: Daily Logic — Native Android Edition
 
-**Status:** Product specification finalized; implementation planning ready.  
-**Build path:** Google AI Studio → native Android (Kotlin + Jetpack Compose) → export ZIP → Android Studio for deeper verification and online-backend integration.
+**Sudoku: Daily Logic** is a polished, native Android Sudoku game built with Kotlin, Jetpack Compose, and Material Design 3.
 
-This pack is the source of truth for the first build. Use the prompt files in order. Do not ask the AI Studio agent to implement every feature in one giant pass; first establish a compilable vertical slice, then add the puzzle engine, persistence, extras, and ads.
+## Game Modes
 
-## Documents
+### 1. Classic Sudoku
+- Standard 9×9 grid with rows, columns, and 3×3 blocks containing numbers 1–9.
+- 4 difficulty levels: Easy (36–40 clues), Medium (30–35 clues), Hard (26–29 clues), and Expert (22–25 clues).
+- Daily Challenges with deterministic generation and calendar streak tracking.
 
-- `docs/PRD.md` — finalized product requirements and acceptance criteria.
-- `docs/ARCHITECTURE.md` — app structure, domain rules, offline storage, leaderboard boundary.
-- `docs/IMPLEMENTATION_PLAN.md` — staged delivery plan and exit gates.
-- `docs/DECISIONS.md` — architecture decisions and deferred scope.
-- `docs/MONETIZATION_PRIVACY_RELEASE.md` — AppLovin MAX plan, consent, ad placement rules, and Play release checks.
-- `docs/QA_CHECKLIST.md` — engine, UI, persistence, ads, and release test list.
-- `prompts/01_AI_STUDIO_MASTER_PROMPT.md` — start a new native Android build.
-- `prompts/02_ITERATION_PROMPTS.md` — smaller prompts to use one at a time after the first build.
-- `prompts/03_POST_EXPORT_ANDROID_STUDIO_PROMPT.md` — task prompt for exported project work, including online leaderboard readiness.
+### 2. Killer Sudoku (Sumdoku / Addoku)
+- 9×9 grid combining classic Sudoku constraints with arithmetic **cages**.
+- **Cages**: Groups of contiguous cells bounded by **dashed line outlines**.
+- **Target Sum**: Displayed as a small number in the upper-left corner of each cage.
+- **The Sum Rule**: Numbers within each cage must add up to the cage's target sum.
+- **No Duplicates in Cages**: Numbers cannot repeat within a cage, row, column, or 3×3 block.
+- **Dynamic Cage Feedback**: Real-time cage sum counter (`Cage Sum: X / Target`), cage selection highlights, and conflict detection when sums exceed the target.
+- 4 difficulty levels: Easy, Medium, Hard, and Expert (pure "45 rule" deductions).
 
-## Recommended workflow
-
-1. Open Google AI Studio and choose **Build mode → Android**.
-2. Paste `prompts/01_AI_STUDIO_MASTER_PROMPT.md` as the initial prompt.
-3. Build and inspect the minimum viable game. Then use `prompts/02_ITERATION_PROMPTS.md` sequentially, not all at once.
-4. After each milestone, test a full puzzle on a physical Android phone and keep a ZIP backup.
-5. Export the Android project ZIP. Open it in Android Studio for unit tests, Gradle/build configuration checks, SDK integration, and any backend work.
-6. Add real AppLovin credentials only in the controlled release workflow. Do not paste private account credentials into prompts or commit them to a public repository.
-7. Release to Play internal testing before any production rollout.
-
-## Scope truth
-
-Google AI Studio's native Android builder currently generates a client-side Kotlin/Jetpack Compose project and does not directly provide server-side services such as Firebase integration or multiplayer. Therefore:
-
-- **First native milestone:** real offline Sudoku, local daily challenge, local saves, local statistics/streaks, local achievements, themes.
-- **Backend milestone:** real cross-device sync and global/verified leaderboards, after export to a workflow where a backend can be added.
-- **Monetization milestone:** integrate AppLovin MAX and approved network adapters after core gameplay passes QA.
-
-A local score list must never be presented as a real global leaderboard.
-
-## Current platform checks (verify again before release)
-
-- Google's AI Studio Android guide: https://ai.google.dev/gemini-api/docs/aistudio-android
-- Google AI Studio Build mode: https://ai.google.dev/gemini-api/docs/aistudio-build-mode
-- AppLovin MAX Android integration: https://developers.applovin.com/en/max/android/overview/integration/
-- Google Play target API requirements: https://developer.android.com/google/play/requirements/target-sdk
-- Google Play Ads policy: https://support.google.com/googleplay/android-developer/answer/9857753
-
-As checked on 19 October 2026, new Android apps and updates submitted to Google Play must target Android 16 / API 36 or higher under the requirements effective 31 August 2026. Recheck the live policy at submission time.
+## Features
+- Interactive 9×9 grid with 3×3 block borders, cell highlighting, matching digit highlights, and dual input (direct digits + pencil notes).
+- Full Undo/Redo stack, Erase, Notes toggle, and intelligent Hint system.
+- Daily Challenge calendar card with 3D trophy illustration, monthly completion progress, and day selection.
+- Comprehensive statistics, 10 local achievements, and 5 curated themes (System, Light, Dark, Parchment, Midnight).

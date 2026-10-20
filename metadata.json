@@ -1,0 +1,6 @@
+{
+  "name": "Sudoku",
+  "description": "Sudoku: Daily Logic - Premium offline Sudoku with 4 difficulty levels, daily challenge, statistics, and achievements.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
